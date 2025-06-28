@@ -1,8 +1,9 @@
+@import url("https://fonts.bunny.net/css?family=manrope:400,500,700|lora:400,700");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.bunny.net/css?family=manrope:400,500,700|lora:400,700");
 
 :root {
   --font-sans: 'Manrope', sans-serif;

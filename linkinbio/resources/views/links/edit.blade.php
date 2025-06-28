@@ -1,53 +1,54 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-2xl font-bold text-dark leading-tight">
             Edit Link
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm rounded p-6">
-
-                <form action="{{ route('links.update', $link) }}" method="POST">
+    <div class="py-10 bg-soft min-h-screen">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="bg-white p-8 shadow rounded-xl">
+                <form action="{{ route('links.update', $link) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT')
 
-                    <div class="mb-4">
-                        <label class="block font-medium text-sm text-gray-700">Judul</label>
-                        <input type="text" name="title" value="{{ old('title', $link->title) }}" required
-                            class="w-full border rounded px-3 py-2 mt-1" />
-                        @error('title') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
+                    <div>
+                        <label class="block text-sm font-semibold text-dark mb-1">Judul</label>
+                        <input type="text" name="title" value="{{ old('title', $link->title) }}"
+                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            required>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block font-medium text-sm text-gray-700">URL</label>
-                        <input type="url" name="url" value="{{ old('url', $link->url) }}" required
-                            class="w-full border rounded px-3 py-2 mt-1" />
-                        @error('url') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
+                    <div>
+                        <label class="block text-sm font-semibold text-dark mb-1">URL</label>
+                        <input type="url" name="url" value="{{ old('url', $link->url) }}"
+                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            required>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block font-medium text-sm text-gray-700">Deskripsi</label>
-                        <textarea name="description"
-                            class="w-full border rounded px-3 py-2 mt-1">{{ old('description', $link->description) }}</textarea>
-                        @error('description') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
+                    <div>
+                        <label class="block text-sm font-semibold text-dark mb-1">Deskripsi</label>
+                        <textarea name="description" rows="3"
+                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary">{{ old('description', $link->description) }}</textarea>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block font-medium text-sm text-gray-700">Urutan</label>
+                    <div>
+                        <label class="block text-sm font-semibold text-dark mb-1">Urutan</label>
                         <input type="number" name="order" value="{{ old('order', $link->order) }}"
-                            class="w-full border rounded px-3 py-2 mt-1" />
-                        @error('order') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
+                            class="w-24 border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            required>
                     </div>
 
                     <div class="flex justify-end">
-                        <a href="{{ route('links.index') }}" class="mr-4 text-gray-600 hover:underline">Batal</a>
+                        <a href="{{ route('links.index') }}"
+                            class="mr-4 text-sm text-gray-500 hover:text-dark">Batal</a>
+
                         <button type="submit"
-                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">Update</button>
+                            class="px-6 py-2 bg-primary text-white font-medium rounded-xl hover:bg-accent transition">
+                            Simpan Perubahan
+                        </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

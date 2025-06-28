@@ -1,53 +1,71 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Daftar Link
+        <h2 class="text-2xl font-bold text-dark leading-tight">
+            Daftar Link Kamu
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <a href="{{ route('links.create') }}" class="mb-4 inline-block bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition">+ Tambah Link</a>
+    <div class="py-10 bg-dark min-h-screen">
+        <div class="max-w-4xl mx-auto px-6">
+            @if(session('success'))
+                <div class="mb-4 p-4 rounded-xl bg-primary text-white font-medium shadow">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-                @if(session('success'))
-                    <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                <table class="min-w-full bg-white shadow rounded overflow-hidden">
-                    <thead>
-                        <tr>
-                            <th class="text-left py-2 px-4">Judul</th>
-                            <th class="text-left py-2 px-4">URL</th>
-                            <th class="text-left py-2 px-4">Urutan</th>
-                            <th class="text-left py-2 px-4">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($links as $link)
-                            <tr class="border-t">
-                                <td class="py-2 px-4">{{ $link->title }}</td>
-                                <td class="py-2 px-4">{{ $link->url }}</td>
-                                <td class="py-2 px-4">{{ $link->order }}</td>
-                                <td class="py-2 px-4">
-                                    <a href="{{ route('links.edit', $link->id) }}" class="text-indigo-600 hover:underline">Edit</a>
-                                    <form action="{{ route('links.destroy', $link->id) }}" method="POST" class="inline ml-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Yakin hapus link ini?')" class="text-red-600 hover:underline">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                @if($links->isEmpty())
-                    <p class="text-gray-500 mt-4">Belum ada link ditambahkan.</p>
-                @endif
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-semibold text-dark">Kelola Link</h3>
+                <a href="{{ route('links.create') }}"
+                   class="inline-block px-4 py-2 bg-primary text-white font-semibold rounded-xl hover:bg-accent transition">
+                    + Tambah Link
+                </a>
             </div>
+
+            @if($links->isEmpty())
+                <div class="text-gray-500 text-center py-10">Belum ada link yang ditambahkan.</div>
+            @else
+                <div class="bg-dark shadow rounded-xl overflow-x-auto">
+                    <table class="min-w-full table-auto text-sm text-left">
+                        <thead class="bg-dark text-soft">
+                            <tr>
+                                <th class="px-4 py-3 border-b border-white/20">Judul</th>
+                                <th class="px-4 py-3 border-b border-white/20">URL</th>
+                                <th class="px-4 py-3 border-b border-white/20">Urutan</th>
+                                <th class="px-4 py-3 border-b border-white/20 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($links as $link)
+                                <tr class="hover:bg-accent/70 transition">
+                                    <td class="px-4 py-3 border-b border-white/10">{{ $link->title }}</td>
+                                    <td class="px-4 py-3 border-b border-white/10 text-blue-600">
+                                        <a href="{{ $link->url }}" target="_blank" class="hover:underline">
+                                            {{ $link->url }}
+                                        </a>
+                                    </td>
+                                    <td class="px-4 py-3 border-b border-white/10">{{ $link->order }}</td>
+                                    <td class="px-4 py-3 border-b border-white/10 text-right space-x-2">
+                                        <a href="{{ route('links.edit', $link) }}"
+                                           class="inline-block px-3 py-1 text-sm bg-primary text-white rounded hover:bg-accent transition">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('links.destroy', $link) }}" method="POST"
+                                              class="inline-block"
+                                              onsubmit="return confirm('Yakin ingin menghapus link ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
