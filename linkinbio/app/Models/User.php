@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+// Tambahkan baris ini untuk mengimpor model Link
+use App\Models\Link;
+
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,5 +47,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the links for the user.
+     */
+    public function links()
+    {
+        return $this->hasMany(Link::class);
     }
 }

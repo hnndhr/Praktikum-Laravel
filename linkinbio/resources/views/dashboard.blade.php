@@ -11,16 +11,29 @@
                 <h1 class="text-3xl font-bold text-primary mb-4">
                     Selamat datang, {{ Auth::user()->name }}!
                 </h1>
-                <p class="text-soft/80">
-                    Kelola link yang ingin kamu tampilkan di halaman profilmu.
+                <p class="text-soft/80 mb-6">
+                    Nih link yang udah kamu tambahin.
                 </p>
 
-                <div class="mt-6">
-                    <a href="{{ route('links.index') }}"
-                       class="inline-block bg-primary hover:bg-accent text-white px-6 py-3 rounded-xl shadow transition">
-                        Kelola Link
-                    </a>
+                {{-- Konten Profil dari profile.blade.php --}}
+                <div class="max-w-md mx-auto px-4 pt-4 text-center">
+                    <img src="{{ $profile['photo'] }}" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-md object-cover">
+                    <h1 class="text-2xl font-semibold text-soft">{{ $profile['name'] }}</h1>
+                    <p class="text-sm text-soft/80 mb-6">{{ $profile['bio'] }}</p>
+
+                    @foreach($links as $link)
+                        <a href="{{ $link->url }}" target="_blank"
+                           class="block w-full bg-primary   hover:bg-accent text-white font-medium py-3 px-4 rounded-xl shadow mb-4 transition">
+                            {{ $link->title }}
+                        </a>
+                    @endforeach
+
+                    @if($links->isEmpty())
+                        <p class="text-soft/40">Belum ada link ditambahkan.</p>
+                    @endif
                 </div>
+                {{-- Konten Profil berakhir --}}
+
             </div>
         </div>
     </div>
