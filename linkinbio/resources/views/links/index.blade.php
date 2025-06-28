@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-dark leading-tight">
+        <h2 class="text-2xl font-bold text-soft leading-tight">
             Daftar Link Kamu
         </h2>
     </x-slot>
@@ -14,9 +14,9 @@
             @endif
 
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-semibold text-dark">Kelola Link</h3>
+                <h3 class="text-lg font-semibold text-soft">Kelola Link</h3>
                 <a href="{{ route('links.create') }}"
-                   class="inline-block px-4 py-2 bg-primary text-white font-semibold rounded-xl hover:bg-accent transition">
+                   class="inline-block px-4 py-2 bg-primary text-white font-semibold rounded-xl hover:bg-accent hover:text-gray-100 transition">
                     + Tambah Link
                 </a>
             </div>
@@ -24,9 +24,9 @@
             @if($links->isEmpty())
                 <div class="text-gray-500 text-center py-10">Belum ada link yang ditambahkan.</div>
             @else
-                <div class="bg-dark shadow rounded-xl overflow-x-auto">
+                <div class="bg-zinc-800 shadow rounded-xl overflow-x-auto">
                     <table class="min-w-full table-auto text-sm text-left">
-                        <thead class="bg-dark text-soft">
+                        <thead class="bg-zinc-800 text-soft">
                             <tr>
                                 <th class="px-4 py-3 border-b border-white/20">Judul</th>
                                 <th class="px-4 py-3 border-b border-white/20">URL</th>
@@ -36,9 +36,9 @@
                         </thead>
                         <tbody>
                             @foreach($links as $link)
-                                <tr class="hover:bg-accent/70 transition">
+                                <tr class="hover:bg-zinc-700 transition">
                                     <td class="px-4 py-3 border-b border-white/10">{{ $link->title }}</td>
-                                    <td class="px-4 py-3 border-b border-white/10 text-blue-600">
+                                    <td class="px-4 py-3 border-b border-white/10 text-primary">
                                         <a href="{{ $link->url }}" target="_blank" class="hover:underline">
                                             {{ $link->url }}
                                         </a>

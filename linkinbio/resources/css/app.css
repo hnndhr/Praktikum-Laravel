@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset default focus ring biru dari browser */
+input:focus,
+textarea:focus,
+select:focus {
+  @apply outline-none ring-2 ring-primary;
+}
+
 
 :root {
   --font-sans: 'Manrope', sans-serif;

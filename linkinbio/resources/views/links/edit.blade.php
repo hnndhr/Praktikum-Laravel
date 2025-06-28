@@ -1,51 +1,51 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-2xl font-bold text-dark leading-tight">
+        <h2 class="text-2xl font-bold text-soft leading-tight">
             Edit Link
         </h2>
     </x-slot>
 
-    <div class="py-10 bg-soft min-h-screen">
+    <div class="py-10 bg-dark min-h-screen">
         <div class="max-w-3xl mx-auto px-6">
-            <div class="bg-white p-8 shadow rounded-xl">
+            <div class="bg-dark border border-soft/10 p-8 shadow rounded-xl">
                 <form action="{{ route('links.update', $link) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT')
 
                     <div>
-                        <label class="block text-sm font-semibold text-dark mb-1">Judul</label>
+                        <label class="block text-sm font-semibold text-soft mb-1">Judul</label>
                         <input type="text" name="title" value="{{ old('title', $link->title) }}"
-                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="w-full bg-dark text-soft border border-soft/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
                             required>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-dark mb-1">URL</label>
+                        <label class="block text-sm font-semibold text-soft mb-1">URL</label>
                         <input type="url" name="url" value="{{ old('url', $link->url) }}"
-                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="w-full bg-dark text-soft border border-soft/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
                             required>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-dark mb-1">Deskripsi</label>
+                        <label class="block text-sm font-semibold text-soft mb-1">Deskripsi</label>
                         <textarea name="description" rows="3"
-                            class="w-full border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary">{{ old('description', $link->description) }}</textarea>
+                            class="w-full bg-dark text-soft border border-soft/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary">{{ old('description', $link->description) }}</textarea>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-dark mb-1">Urutan</label>
+                        <label class="block text-sm font-semibold text-soft mb-1">Urutan</label>
                         <input type="number" name="order" value="{{ old('order', $link->order) }}"
-                            class="w-24 border border-dark/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
+                            class="w-24 bg-dark text-soft border border-soft/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary"
                             required>
                     </div>
 
-                    <div class="flex justify-end">
-                        <a href="{{ route('links.index') }}"
-                            class="mr-4 text-sm text-gray-500 hover:text-dark">Batal</a>
-
+                    <div class="flex justify-end items-center space-x-4">
+                        <div class='px-6 py-2 bg-soft text-primary font-medium rounded-xl hover:bg-zinc-600 hover:text-soft transition'>
+                        <a href="{{ route('links.index') }}">Batal</a>
+                        </div>
                         <button type="submit"
                             class="px-6 py-2 bg-primary text-white font-medium rounded-xl hover:bg-accent transition">
-                            Simpan Perubahan
+                            Simpan
                         </button>
                     </div>
                 </form>
