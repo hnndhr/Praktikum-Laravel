@@ -38,16 +38,9 @@ class LinkController extends Controller
         'description' => 'nullable|string',
     ]);
 
-    $userId = Auth::id(); // Ambil ID user yang sedang login
+    $userId = Auth::id(); 
 
-    // Pastikan 'user_id' ditambahkan ke data sebelum membuat link
-    // Ini adalah cara yang direkomendasikan:
     Auth::user()->links()->create($request->all());
-
-    // ATAU, jika Anda tidak ingin mengubah Auth::user()->links()->create($request->all());
-    // Anda bisa gunakan cara sebelumnya ini:
-    // Link::create(array_merge($request->all(), ['user_id' => $userId]));
-
 
     return redirect()->route('links.index')->with('success', 'Link berhasil ditambahkan!');
 }

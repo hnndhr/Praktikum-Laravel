@@ -17,9 +17,9 @@ Route::get('/dashboard', function () {
 
     // Data profil statis untuk dashboard (bio dan photo)
     $profile = [
-        'name' => $user->name, // Nama tetap diambil dari user yang login
-        'bio' => 'Informatics Student at UNS 👩🏻‍💻', // Static Bio
-        'photo' => asset('images/baymax.jpg'), // Static Photo
+        'name' => $user->name, 
+        'bio' => 'Informatics Student at UNS', 
+        'photo' => asset('images/baymax.jpg'), 
     ];
 
     return view('dashboard', compact('user', 'links', 'profile'));
